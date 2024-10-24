@@ -1,0 +1,2 @@
+# struct-training
+using struct 
