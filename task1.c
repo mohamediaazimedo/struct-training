@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int choix,i,number;
+char del;
 
 struct adresse{
 
@@ -57,7 +58,7 @@ int entery(Personne p[] ){
 
             break;
             case 2:
-              Read( p);
+              Read(p);
 
 
             break;
@@ -115,7 +116,28 @@ int Add(){
 }
 int Delete(Personne pers[]){
 
-      printf("\n Enter Name of person wanted to Delete\n",i+1);
+    printf("\n###########Delete#############\n");
+
+      printf("\n Enter Name of person wanted to Delete\n");
+      scanf("%[^\n]d",&del);
+
+     /* for(i=0;i<number;i++){
+            if(del==pers[i].name){
+
+                    printf("A user match found");
+
+            }
+
+
+
+
+
+
+
+}
+ */
+
+
 
 
 }
