@@ -2,17 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*#define LEFT(str, w) \
-    ({int m = w + strlen(str); m % 2 ? (m + 1) / 2 : m / 2;})
-
-#define RIGHT(str, w) \
-({ int m = w - strlen(str); m % 2 ? (m - 1) / 2 : m / 2; })
-
-#define STR_CENTER(str, width) \
-    LEFT(str, width), str, RIGHT(str, width), ""
+// Define color codes
+#define RESET "\x1b[0m"           // Reset all colors to default
+#define RED "\x1b[31m"       // Red text
+#define GREEN "\x1b[32m"     // Green text
 
 
-*/
+
+
 
 
 
@@ -41,21 +38,23 @@ typedef struct {
 
 }Personne;
 
-    int Add();
+    int Add(Personne p[]);
     int Delete(Personne p[]);
     int Update(Personne p[]);
     int Read(Personne p[]);
 
 
 int main (){
+     system("color 0");
+
 
 // caling add function first to add data
 // inside data after finishing adding data we are going to show up a menu to update delete ...
 
 
 
-
-    Add();
+   Personne p[Size];
+    entery(p);
 
     return 0;
 
@@ -63,16 +62,25 @@ int main (){
 
 int entery(Personne p[] ){
 
+
+
     // Menu the select what users want to do more  it comes after add() function
      do{
-    printf("\n\n #################Menu################\n");
 
-      printf("    1. Update  data # \n\n");
-        printf("    2. Read  data # \n\n");
-          printf("    3. Delete  data # \n\n");
-           printf("    4. Add new data  data # \n\n");
 
-           printf(" -->Enter the number related to your choose : ");
+
+
+
+
+    printf(GREEN"\n\n \t\t\t#################Menu################\n"RESET);
+
+
+      printf("\n\t\t\t\t1. Update  data # \n\n");
+        printf("\t\t\t\t2. Read  data # \n\n");
+          printf("\t\t\t\t3. Delete  data # \n\n");
+           printf("\t\t\t\t4. Add new data  data # \n\n");
+
+           printf("\n\n\t\t -->Enter the number related to your choose : ");
           scanf("%d",&choix);
 // check choix and move to funtions
 
@@ -97,7 +105,7 @@ int entery(Personne p[] ){
                 Add(p);
                 number=number+1;
                 break;
-            default: printf("You should Enter a number Related to The Tabel");
+            default: printf(RED"\n\n\t\tYou should Enter a number Related to The Tabel"RESET);
 
 
           }
@@ -108,34 +116,36 @@ int entery(Personne p[] ){
 
 }
 
-int Add(){
+int Add(Personne p[]){
 
-   //  printf("%*s%*s\n\n", STR_CENTER("<<<<<<<<<< Add >>>>>>>>>>", 40));
 
- printf("\n <<<<<<<<<< Add >>>>>>>>>>\n\n");
-    printf(" \n  >> number  of person wanted to add :  ");
+ printf(GREEN"\n\n\t\t\t\t<<<<<<<<<< Add >>>>>>>>>>\n\n"RESET);
+    printf(" \n\t\t  ->> number  of person wanted to add :  ");
+
 
    scanf("%d",&number);
 
+        number=Size+number;
 
-   Personne p[number];
 
 
-        for(i=0;i<number;i++){
 
-            printf("\n**************Person %d****************\n",i+1);
-                printf(" -> Enter the name :  ");
+
+        for(i=Size;i<number;i++){
+
+            printf(GREEN"\n\t\t\t**************Person %d****************\n"RESET,i+1);
+                printf("\n\n\t\t  >>> Enter the name :  ");
           scanf(" %[^\n]s",&p[i].name);
-         printf(" -> Enter the age :  ");
+         printf("\t\t  >>> Enter the age :  ");
           scanf("%d",&p[i].age);
-           printf("");
 
-        printf(" -> Enter the street  :  ");
+
+        printf("\t\t  >>> Enter the street  :  ");
           scanf("%s",&p[i].add.rue);
 
-           printf(" -> Enter the city  :  ");
+           printf("\t\t  >>> Enter the city  :  ");
           scanf("%s",&p[i].add.ville);
-           printf(" -> Enter the code postal  :  ");
+           printf("\t\t  >>> Enter the code postal  :  ");
           scanf("%d",&p[i].add.code_postal);
           p[i].id=i+1;
 
@@ -153,13 +163,13 @@ int Add(){
 int Delete(Personne pers[]){
     found=-1;
 
-    printf("\n  <<<<<<<<<<<Delete>>>>>>>>>>\n");
+    printf(GREEN"\n\t\t\t\t<<<<<<<<<<Delete>>>>>>>>>>\n"RESET);
 
     if(Size==0){
 
-            printf("      No Data to Display Add new    \n ");
+            printf(RED"\n\n\t\t\t\tNo Data to Display Add new    \n "RESET);
 
-    Add();
+    Add(pers);
 }
 
 else{
@@ -167,7 +177,7 @@ else{
 
 
 
-      printf("\n Enter Name of person wanted to Delete : ");
+      printf("\n\t\tEnter Name of person wanted to Delete : ");
       scanf(" %[^\n]s",&del);
 
 
@@ -194,13 +204,13 @@ else{
 
         number--;
         Size--;
-        printf("<<<<<<<<<person %d Deleted >>>>>>>>>>",pers[i].id);
+        printf(GREEN"\t\t\t\t<<<<<<<<<person %d Deleted >>>>>>>>>>"RESET,pers[i].id);
 
         entery(pers);
       }
 
       else {
-            printf("<<<<<<<<<No Person Find>>>>>>>>>>>>>>");
+            printf(GREEN"\t\t\t\t<<<<<<<<<No Person Find>>>>>>>>>>>>>>"RESET);
       entery(pers);
       }
 
@@ -220,13 +230,13 @@ else{
 
 int Read(Personne pers[]){
 
-printf("\n  <<<<<<<<<< Read >>>>>>>>>>\n");
+printf(GREEN"\n\t\t\t\t<<<<<<<<<< Read >>>>>>>>>>\n"RESET);
 
 if(Size==0){
 
-            printf("      No Data to Display Add new    \n ");
+            printf(RED"\t\t\t\tNo Data to Display Add new    \n "RESET);
 
-    Add();
+    Add(pers);
 }
 
 else {
@@ -234,7 +244,7 @@ for(i=0;i<number;i++){
 
 
 
-      printf("\n\n ***The Person %d  Data ***\n \n    >>name is : %s \n    >> age is : %d \n    >> the street : %s \n    >> the city :%s \n    >> code postal : %d \n\n\n",pers[i].id,pers[i].name,pers[i].age,pers[i].add.rue,pers[i].add.ville,pers[i].add.code_postal);
+      printf("\n\n\t\t\t\t ***The Person %d  Data ***\n \n    >>name is : %s \n    >> age is : %d \n    >> the street : %s \n    >> the city :%s \n    >> code postal : %d \n\n\n",pers[i].id,pers[i].name,pers[i].age,pers[i].add.rue,pers[i].add.ville,pers[i].add.code_postal);
 
 
 }
@@ -248,9 +258,9 @@ int Update(Personne pers[]){
 
     if(Size==0){
 
-            printf("      No Data to Display Add new    \n ");
+            printf("\n\n\t\t\t\tNo Data to Display Add new    \n\n ");
 
-       Add();
+       Add(pers);
 
     }
 
@@ -258,7 +268,7 @@ int Update(Personne pers[]){
 
  found=-1;
 
-    printf("Enter Id of table you want to Update : ");
+    printf("\n\t\tEnter Id of table you want to Update : ");
     scanf("%d",&choix);
 
 
@@ -282,19 +292,19 @@ int Update(Personne pers[]){
 
             found=found-1;
 
-             printf("\n**************Update of Person %d****************\n",found+1);
+             printf(GREEN"\n\t\t\t\t**********Update of Person %d**********\n"RESET,found+1);
                 printf(" -> Enter the name :  ");
           scanf("%s",&pers[found].name);
-         printf(" -> Enter the age :  ");
+         printf("\t\t-> Enter the age :  ");
           scanf("%d",&pers[found].age);
-           printf("");
 
-        printf(" -> Enter the street  :  ");
+
+        printf("\t\-> Enter the street  :  ");
           scanf("%s",&pers[found].add.rue);
 
-           printf(" -> Enter the city  :  ");
+           printf("\t\-> Enter the city  :  ");
           scanf("%s",&pers[found].add.ville);
-           printf(" -> Enter the code postal  :  ");
+           printf("\t\-> Enter the code postal  :  ");
           scanf("%d",&pers[found].add.code_postal);
           pers[found].id=i+1;
 
@@ -303,9 +313,9 @@ int Update(Personne pers[]){
         }
 
         else {
-                printf("The Id Entered has no Data \n\n\n");
+                printf(RED"\t\t\t\tThe Id Entered has no Data \n\n\n"RESET);
 
-                Add();
+                Add(pers);
 
                 }
 
