@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEFT(str, w) \
+/*#define LEFT(str, w) \
     ({int m = w + strlen(str); m % 2 ? (m + 1) / 2 : m / 2;})
 
 #define RIGHT(str, w) \
@@ -12,7 +12,7 @@
     LEFT(str, width), str, RIGHT(str, width), ""
 
 
-
+*/
 
 
 
@@ -110,9 +110,9 @@ int entery(Personne p[] ){
 
 int Add(){
 
-     printf("%*s%*s\n\n", STR_CENTER("<<<<<<<<<< Add >>>>>>>>>>", 40));
+   //  printf("%*s%*s\n\n", STR_CENTER("<<<<<<<<<< Add >>>>>>>>>>", 40));
 
-// printf("\n <<<<<<<<<< Add >>>>>>>>>>\n\n",i+1);
+ printf("\n <<<<<<<<<< Add >>>>>>>>>>\n\n");
     printf(" \n  >> number  of person wanted to add :  ");
 
    scanf("%d",&number);
