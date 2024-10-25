@@ -174,7 +174,7 @@ else{
 
       for(i=0;i<number;i++){
 
-            if(sizeof(pers)>=0&&strcmp(del,pers[i].name)==0)
+            if(Size>=0&&strcmp(del,pers[i].name)==0)
             {
                 found=i;
                 break;
@@ -268,24 +268,26 @@ int Update(Personne pers[]){
                 found=i+1;
             }
 
+            break;
+
 
 
     }
 
+    printf("%d",found);
 
 
 
     if(found>=0){
 
-            found--;
+            found=found-1;
 
              printf("\n**************Update of Person %d****************\n",found+1);
                 printf(" -> Enter the name :  ");
-          scanf(" %[^\n]s",&pers[found].name);
-
+          scanf("%s",&pers[found].name);
          printf(" -> Enter the age :  ");
           scanf("%d",&pers[found].age);
-
+           printf("");
 
         printf(" -> Enter the street  :  ");
           scanf("%s",&pers[found].add.rue);
