@@ -7,9 +7,9 @@
 
 // Define color codes
 #define RESET "\x1b[0m"           // Reset all colors to default
-#define RED "\x1b[31m"       
-#define GREEN "\x1b[32m"   
-#define BLUE "\x1b[34m"  
+#define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define BLUE "\x1b[34m"
 
 // var
 int choix,i,number,found,Size=0;
@@ -26,7 +26,7 @@ struct adresse{
 
 };
 
-//personne structure 
+//personne structure
 
 typedef struct {
     int id;
@@ -42,7 +42,7 @@ typedef struct {
     int Menu(Personne p[]);
         int Save(Personne p[]);
 
-    
+
 int main (){
      system("color 0");
 
@@ -58,7 +58,7 @@ int main (){
 }
 
 int Menu(Personne p[] ){
-	
+
 
 
 
@@ -75,7 +75,7 @@ int Menu(Personne p[] ){
 
     printf("\n\n\t\t --> Go To : $ ");
     scanf("%d",&choix);
-    
+
       // check choix and move to funtions
 
           switch(choix){
@@ -92,7 +92,8 @@ int Menu(Personne p[] ){
               Delete(p);
             break;
             case 4:
-                Add(p);
+             Add(p);
+
                 break;
                 case 5:
                 	Save(p);
@@ -109,70 +110,62 @@ return;
 }
 
 int Add(Personne p[]){
-	
+
+            char out[30];
+
+
 
 printf(GREEN"\n\n\t\t\t\t<<<<<<<<<< Add >>>>>>>>>>\n\n"RESET);
- 
-  printf(RED"\n\n\t\t  $$$$ Enter (0)  To Back To Main Menu In any time $$$ \n\n"RESET);
-
- 
-    printf(" \n\t\t  ->> number  of person wanted to add $   ");
 
 
-   scanf("%d",&number);
-   
-  
-   
-    number=Size+number;
 
 
-        for(i=Size;i<number;i++){
-        
 
 
-            printf(GREEN"\n\t\t\t**************Person %d****************\n"RESET,i+1);
+               number=Size;
+
+            printf(GREEN"\n\t\t\t**************Person %d****************\n"RESET,number+1);
              printf(RED"\n\n\t\t  $$$$ Note : Enter (0)  To Back To Main  $$$ \n\n"RESET);
                 printf("\n\n\t\t  >>> Enter the name :  ");
-                
-                
-          scanf(" %[^\n]s",p[i].name);
-          	if(strcmp(p[i].name,"0")==0)
-          	{
-          		
-          		number=i+1;
-          		 Menu(p);
-          		 break;
-          		
-			  }
-			  else{
-			
-        	       
+                scanf(" %[^\n]s",&p[number].name);
+
+
          printf("\t\t  >>> Enter the age :  ");
-          scanf("%d",&p[i].age);
+          scanf("%d",&p[number].age);
 
 
         printf("\t\t  >>> Enter the street  :  ");
-          scanf(" %[^\n]s",p[i].add.rue);
+          scanf(" %[^\n]s",p[number].add.rue);
 
           printf("\t\t  >>> Enter the city  :  ");
-          scanf(" %[^\n]s",p[i].add.ville);
+          scanf(" %[^\n]s",p[number].add.ville);
           printf("\t\t  >>> Enter the code postal  :  ");
-          scanf("%d",&p[i].add.code_postal);
-          p[i].id=i+1;
-                  Size=Size+i+1;
+          scanf("%d",&p[number].add.code_postal);
+          p[number].id=number+1;
+                  Size=number+1;
 
           printf(BLUE"\n\n\t\t\t\t* Note You Should Save Befor Exit  * \n\n"RESET);
 
-          
-          
 
-  }
 
-        }
-        
+ printf(" \n\t\t  ->> Add new Person y/n  $   ");
+
+
+   scanf("%s",&left);
+   if(left=='y'||left=='Y'){
+
         Menu(p);
 
-return;
+   }
+   else if(left=='n'||left=='N'){
+       Add(p);
+
+   }
+
+
+
+
+
 
 
 
@@ -219,14 +212,14 @@ else{
         for(i=found;i<number-1;i++)
         {
             pers[i]=pers[i+1];
-            
+
         }
 
         number--;
         Size--;
         printf(BLUE"\n\n\t\t\t\t<<<<<<<<<person %d Deleted >>>>>>>>>>"RESET,pers[i].id);
         saved==false;
-		Save(pers);  
+		Save(pers);
         return;
       }
 
@@ -326,7 +319,7 @@ int Update(Personne pers[]){
            printf("\t-> Enter the code postal  :  ");
           scanf("%d",&pers[found].add.code_postal);
           pers[found].id=i+1;
-          
+
           saved=false;
           Save(pers);
           return;
@@ -348,7 +341,7 @@ int Update(Personne pers[]){
 
 int Save(Personne pers[]){
 	if(Size==0)
-	{	
+	{
 	printf(RED"\n\n\t\t\t\tNo Data to Save Add new  !  \n "RESET);
     Add(pers);
     return;
@@ -360,64 +353,64 @@ int Save(Personne pers[]){
     pfile=fopen("personne","a");
 
 	}
-	
+
 	if(saved){
-		
-			
+
+
 	printf(RED"\n\n\t\t\t\t* Its Already Saved *   \n "RESET);
     Menu(pers);
-	
-    return;
-	
 
-		
+    return;
+
+
+
 	}
 	else{
-	
-	
+
+
 	for(i=0;i<number;i++)
 	{
 		saved=true;
-	
+
 	fprintf(pfile,"\n\n\t\t\t\t ***The Person %d  Data ***\n \n    \t\t\t\t>>name is : %s \n    \t\t\t\t>> age is : %d \n    \t\t\t\t>> the street : %s \n    \t\t\t\t>> the city :%s \n    \t\t\t\t>> code postal : %d \n\n\n",i+1,pers[i].name,pers[i].age,pers[i].add.rue,pers[i].add.ville,pers[i].add.code_postal);
-		
+
 	}
 
 
 
 	fclose(pfile);
-	
+
 		printf(BLUE"\n\n\t\t\t\t\t * Saved *   \n "RESET);
 
 	Menu(pers);
 	return;
-	
+
 }
-	
-	
+
+
 }
 
 int Exit(Personne p[]){
 	if(saved||number==0)
-	
+
 	{
 			printf(RED"\n\n\t\t\t\t$ Exit  $ "RESET);
 		}
 		else {
 				printf(RED"\n\n\t\t\t\t$ Exit Without Saving ! $ "RESET);
 		}
-	
+
 		printf("\n\n\t\t  Want so Exit y/n :  ");
 		scanf(" %[^\n]s",&left);
-		
-		
+
+
 		switch(left)
 		{
-		
+
 			case 'y':
 			case 'Y':
 				exit(number);
-				
+
 				break;
 				case 'n':
 				case 'N':
@@ -425,9 +418,9 @@ int Exit(Personne p[]){
 					break;
 					default: printf(GREEN"\n\n\t\t\t\tYou should Enter a Y OR N "RESET);
 					Exit(p);
-				
-			
+
+
 		}
 
-	
+
 }
